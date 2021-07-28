@@ -65,7 +65,7 @@ def main():
 
             # clean up the ply
             blend_utils.select_none()
-            imported_ply.select = True
+            imported_ply.select_set(True)
             bpy.ops.object.delete()
 
 
