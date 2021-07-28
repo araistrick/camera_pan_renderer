@@ -49,7 +49,7 @@ def main():
             imported_ply.rotation_euler = np.radians(np.array(cfg.override_ply_euler))
 
             # make it colored according to vertex colors
-            material = bpy.data.materials[-1]
+            material = next(m for m in bpy.data.materials if m.name == 'vertex color')
             assert material.name == 'vertex color'
             if imported_ply.data.materials:
                 imported_ply.data.materials[0] = material
