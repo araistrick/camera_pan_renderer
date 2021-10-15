@@ -3,7 +3,10 @@ A simple script for rendering animations of .ply files with vertex-colors.
 
 ## Installation
 
-#### Installing 
+This script was designed to use `bpy` as a module, [courtesy of this repo](https://github.com/TylerGubala/blenderpy/releases/tag/v2.91a0). The following install instructions provide how to do this. Alternatively, you may run the script using blender's python using `blender --python render.py <input_folder> <output_folder>`. 
+
+
+#### Installing bpy as a module
 
 You may attempt `pip install numpy future_fstrings bpy`, but in my experience installing `bpy` in this way fails. 
 
@@ -13,7 +16,7 @@ Instead, follow instructions from here [https://github.com/TylerGubala/blenderpy
   2. Download the wheel distribution from https://github.com/TylerGubala/blenderpy/releases/tag/v2.91a0
   3. pip install bpy-2.91a0-cp37-cp37m-manylinux2014_x86_64.whl && bpy_post_install
 ````
-Regardless of which method you took, once `bpy` is installed, run `bpy_post_install` in your terminal.
+Regardless of which method you used, once `bpy` is installed, run `bpy_post_install` in your terminal.
 
 ## Setup
 
