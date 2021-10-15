@@ -1,34 +1,30 @@
 # Camera Pan Renderer
-A simple utility designed for rendering animations of PLY files with vertex-colors. In practice, all it does is load up template.blend, import the PLY, set up the materials, and hit the 'render animation' button
+A simple script for rendering animations of .ply files with vertex-colors. 
 
 ## Installation
 
-Use the provided environment.yml to create a conda environment:
-```conda env create -f environment.yml```
+#### Installing 
 
-This will attempt to install blender as a python module under the name `bpy`. It can be quite finicky however. Make sure you are using python3.7.10.
+You may attempt `pip install numpy future_fstrings bpy`, but in my experience installing `bpy` in this way fails. 
 
-Then, finish installing blender by running:
-```bpy_post_install```
-
-### Alternative for bpy install 
-Follow instructions from here [https://github.com/TylerGubala/blenderpy/releases/tag/v2.91a0]
+Instead, follow instructions from here [https://github.com/TylerGubala/blenderpy/releases/tag/v2.91a0]
 ````
   1. Install blender dependecies from https://wiki.blender.org/wiki/Building_Blender/Linux/Ubuntu
   2. Download the wheel distribution from https://github.com/TylerGubala/blenderpy/releases/tag/v2.91a0
   3. pip install bpy-2.91a0-cp37-cp37m-manylinux2014_x86_64.whl && bpy_post_install
 ````
+Regardless of which method you took, once `bpy` is installed, run `bpy_post_install` in your terminal.
 
 ## Setup
 
-Given a PLY with vertex colors, the script will:
-1. Open up blend_files/template.blend
-2. Import your PLY at the origin
-3. Set the material of your PLY to be a material named "vertex_color" (a material which already exists in the provided template.blend)
-4. Set the PLY orientation to be the value found in render.yaml's "override_ply_euler"
-5. 'Render Animation'using EEVEE
+By default, for a given .ply with vertex colors, the script will:
+1. Open up template.blend
+2. Import your .ply at the origin
+3. Set the material of your .ply to be a material named "vertex_color" (a material which already exists in the provided template.blend)
+4. Rotate the ply by 90deg around the X axis (as specified by --override_ply_euler's default value)
+5. Click 'Render Animation'
 
-So, to make sure you will get sensible output, you should follow those steps yourself using an example PLY file, and make modifications to `template.blend` or `config/render.yaml` as necessary.
+So, to make sure you will get sensible output, you should follow those steps yourself using an example PLY file, and make modifications to `template.blend` or any commandline arguments as necessary.
 
 If you wish, you can affect the program behavior by modifying `template.blend` via the Blender UI, for example by:
 - Editing the position / location / intensity of lights relative to your PLY file
@@ -36,7 +32,4 @@ If you wish, you can affect the program behavior by modifying `template.blend` v
 - Changing the camera properties or render resolution
 
 ## Running the script
-```python render.py <input_folder>```
-
-If input_folder is not provided, the program will attempt to use `dataset.plys_folder` from `config/render.yaml`.
-
+```python render.py <input_folder> <output_folder>```, where input_folder contains a set of ply files to be rendered. For each .ply file in the input folder, the script will produce a folder of rendered frames in the output_folder. You may process these into a video as shown in these [ffmpeg examples](https://trac.ffmpeg.org/wiki/Slideshow)
